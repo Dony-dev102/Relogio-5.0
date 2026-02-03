@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>H1 Kinetic Clock - DonyDev</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <video autoplay muted loop id="bg-video">
+        <source src="/img/nuven2.mp4" type="video/mp4">
+    </video>
+
+    <div class="clock">
+        <div class="hour-display">
+            <div id="date-val" class="date-text"></div>
+            <div id="hour-val">00</div>
+        </div>
+
+        <div class="green-marker"></div>
+
+        <div id="minutes-disk" class="disk"></div>
+
+        <svg class="spinner-svg" viewBox="0 0 100 100">
+            <circle class="rail" cx="50" cy="50" r="45"></circle>
+            <circle id="progress-bar" class="progress" cx="50" cy="50" r="45"></circle>
+        </svg>
+    </div>
+
+    <div class="signature">Developed by <span>DonyDev</span></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

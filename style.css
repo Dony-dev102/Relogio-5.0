@@ -1,0 +1,104 @@
+:root {
+    --bg: #000;
+    --green: #B6B6B4; 
+    --text-dim: rgba(255, 255, 255, 0.45);
+    --text-active: #fff;
+
+    /* --- AJUSTE DE POSIÇÃO (Direita e Baixo) --- */
+    --clock-pos-x: 55%;      /* Aumente para ir mais à direita */
+    --clock-pos-y: 50%;      /* Aumente para ir mais para baixo */
+    
+    --data-distancia: -27px; 
+    --data-tamanho: 24px;    
+    --hora-tamanho: 75px;    
+}
+
+body {
+    margin: 0; background: var(--bg);
+    display: flex; justify-content: center; align-items: center;
+    height: 100vh; font-family: 'Arial Black', sans-serif; overflow: hidden;
+}
+
+#bg-video {
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: -1; object-fit: cover; opacity: 0.5;
+}
+
+.clock {
+    position: relative; width: 600px; height: 600px;
+    display: flex; justify-content: center; align-items: center;
+}
+
+.hour-display {
+    position: absolute;
+    z-index: 10;
+    left: var(--clock-pos-x);
+    top: var(--clock-pos-y);
+    transform: translate(-50%, -50%);
+    display: flex; flex-direction: column; align-items: center;
+}
+
+.date-text {
+    position: absolute;
+    top: var(--data-distancia);
+    font-size: var(--data-tamanho);
+    color: var(--green);
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+#hour-val {
+    font-size: var(--hora-tamanho);
+    color: #fff;
+    line-height: 1;
+}
+
+.disk { position: absolute; width: 100%; height: 100%; z-index: 3; }
+
+.item {
+    position: absolute; width: 80px; height: 40px;
+    top: calc(50% - 20px); left: 50%;
+    transform-origin: 0% 50%;
+    display: flex; align-items: center; justify-content: center;
+}
+
+.item span {
+    color: var(--text-dim); font-size: 32px; font-weight: bold;
+    transition: 0.3s;
+}
+
+.item.active span {
+    color: var(--text-active);
+    filter: drop-shadow(0 0 10px #fff);
+    transform: scale(1.15);
+}
+
+.item.tick::after {
+    content: ''; width: 12px; height: 2px;
+    background: rgba(255,255,255,0.2); margin-left: 10px;
+}
+
+.spinner-svg {
+    position: absolute; width: 530px; height: 530px;
+    transform: rotate(-90deg); fill: none; pointer-events: none;
+}
+
+circle { fill: transparent !important; stroke-width: 4; }
+.rail { stroke: rgba(255, 255, 255, 0.1); }
+.progress {
+    stroke: var(--green);
+    stroke-dasharray: 283;
+    transition: stroke-dashoffset 0.1s linear;
+}
+
+.green-marker {
+    position: absolute; left: 40%; width: 283px; height: 65px;
+    border: 3px solid var(--green); border-radius: 35px 0 0 35px;
+    border-right: none; top: 50%; transform: translateY(-50%);
+    z-index: 2;
+}
+
+.signature { position: fixed; bottom: 20px; right: 30px; font-size: 18px; color: #555; }
+.signature span { color: var(--green); }
